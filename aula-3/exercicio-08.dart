@@ -65,45 +65,32 @@ void main() {
   switch (op) {
     case 1:
       preco = 1.70;
-
-      if (quantLitro >= 15) {
-        desconto = preco * quantLitro * 0.04;
-      } else {
-        desconto = preco * quantLitro * 0.03;
-      }
-
-      valorTotal = (preco * quantLitro) - desconto;
-      print('O valor a pagar pelo combustível é R\$ ${valorTotal.toStringAsFixed(2)}');
+      desconto = quantLitro >= 15
+          ? preco * quantLitro * 0.04
+          : preco * quantLitro * 0.03;
       break;
 
     case 2:
       preco = 2.00;
-
-      if (quantLitro >= 15) {
-        desconto = preco * quantLitro * 0.05;
-      } else {
-        desconto = preco * quantLitro * 0.03;
-      }
-
-      valorTotal = (preco * quantLitro) - desconto;
-      print('O valor a pagar pelo combustível é R\$ ${valorTotal.toStringAsFixed(2)}');
+      desconto = quantLitro >= 15
+          ? preco * quantLitro * 0.05
+          : preco * quantLitro * 0.03;
       break;
 
     case 3:
       preco = 4.50;
-
-      if (quantLitro >= 20) {
-        desconto = preco * quantLitro * 0.03;
-        valorTotal = (preco * quantLitro) - desconto;
-      } else {
-        // sem desconto
-        valorTotal = preco * quantLitro;
-      }
-
-      print('O valor a pagar pelo combustível é R\$ ${valorTotal.toStringAsFixed(2)}');
+      desconto = quantLitro >= 20
+          ? preco * quantLitro * 0.03
+          : 0;
       break;
 
     default:
       print("Opção inválida.");
+      return;
   }
+
+  valorTotal = (preco * quantLitro) - desconto;
+
+  print('O valor a pagar pelo combustível é R\$ ${valorTotal.toStringAsFixed(2)}');
 }
+

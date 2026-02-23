@@ -42,3 +42,56 @@
 //
 //                                                     Compra < 20L
 //                                                     sem desconto
+
+import 'dart:ffi';
+import 'dart:io';
+
+// Função que calcula descontos em combustíveis
+String tipoCombustivel(Char etanol, Char diesel, Char gasolina) {
+  int menor = c1;
+  int maior = c1;
+
+  if (c2 < menor) menor = c2;
+  if (c3 < menor) menor = c3;
+
+  if (c2 > maior) maior = c2;
+  if (c3 > maior) maior = c3;
+
+  return "Mais barato: R\$ $menor\nMais caro: R\$ $maior";
+}
+}
+
+void main() {  
+
+  // LIMPA A TELA AO INICIAR 
+  print("\x1B[2J\x1B[0;0H");
+
+  double nota1;
+  double nota2;
+  double resultado;
+
+  stdout.write('Digite a nota do primeiro aluno: ');
+  nota1 = double.parse(stdin.readLineSync()!);
+
+  stdout.write('Digite a nota do segundo aluno: ');
+  nota2 = double.parse(stdin.readLineSync()!);
+
+  // LIMPA A TELA ANTES DE EXIBIR O RESULTADO
+  print("\x1B[2J\x1B[0;0H");
+
+  resultado = media(nota1, nota2);
+
+  print("Média: ${resultado.toStringAsFixed(2)}\n");
+
+  if (resultado >= 7)
+    print("Aprovado");
+  
+  else if (resultado >= 4 && resultado < 7)
+    print("Exame");
+  
+  else
+    print("Reprovado");
+  
+  print("\n");
+}
+

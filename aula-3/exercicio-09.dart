@@ -19,41 +19,47 @@
 
 import 'dart:io';
 
-void main() {
-  int quantKwh;
-  int op;
-  double preco = 0;
-  double valorTotal = 0;
+// Função que retorna o preço por kWh conforme o tipo e a quantidade
+double obterPrecoKwh(int tipo, int kwh) {
+  switch (tipo) {
+    case 1: // Residencial
+      return kwh <= 500 ? 0.50 : 0.70;
 
+    case 2: // Comercial
+      return kwh <= 1000 ? 0.65 : 0.60;
+
+    case 3: // Industrial
+      return kwh <= 5000 ? 0.55 : 0.50;
+
+    default:
+      return 0;
+  }
+}
+
+// Função que calcula o valor total
+double calcularValorTotal(int kwh, double preco) {
+  return kwh * preco;
+}
+
+void main() {
   stdout.write('Digite a quantidade de kWh consumida: ');
-  quantKwh = int.parse(stdin.readLineSync()!);
+  int kwh = int.parse(stdin.readLineSync()!);
 
   print("\n============== Menu ==============");
   print("1 - Residencial");
   print("2 - Comercial");
   print("3 - Industrial");
   stdout.write("\nEscolha uma opção: ");
-  op = int.parse(stdin.readLineSync()!);
+  int tipo = int.parse(stdin.readLineSync()!);
 
-  switch (op) {
-    case 1:
-      preco = quantKwh <= 500 ? 0.50 : 0.70;
-      break;
+  double preco = obterPrecoKwh(tipo, kwh);
 
-    case 2:
-      preco = quantKwh <= 1000 ? 0.65 : 0.60;
-      break;
-
-    case 3:
-      preco = quantKwh <= 5000 ? 0.55 : 0.50;
-      break;
-
-    default:
-      print("Opção inválida.");
-      return;
+  if (preco == 0) {
+    print("Opção inválida.");
+    return;
   }
 
-  valorTotal = quantKwh * preco;
+  double total = calcularValorTotal(kwh, preco);
 
-  print('O valor a pagar pelo consumo de energia é R\$ ${valorTotal.toStringAsFixed(2)}');
+  print('\nO valor a pagar pelo consumo de energia é R\$ ${total.toStringAsFixed(2)}');
 }

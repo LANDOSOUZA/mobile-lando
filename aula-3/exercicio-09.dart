@@ -17,7 +17,6 @@
 //                   Industrial              Até 5000          0.55
 //                                           Acima de 5000     0.50
 
-
 import 'dart:io';
 
 void main() {
@@ -26,54 +25,35 @@ void main() {
   double preco = 0;
   double valorTotal = 0;
 
-  stdout.write('Digite a quantidade de kWh consumida ');
+  stdout.write('Digite a quantidade de kWh consumida: ');
   quantKwh = int.parse(stdin.readLineSync()!);
 
   print("\n============== Menu ==============");
-  print("1 - residencial");
-  print("2 - comercial");
-  print("3 - industrial");
+  print("1 - Residencial");
+  print("2 - Comercial");
+  print("3 - Industrial");
   stdout.write("\nEscolha uma opção: ");
   op = int.parse(stdin.readLineSync()!);
 
   switch (op) {
     case 1:
-      if (quantKwh <= 500) {
-        preco = 0.50;
-        valorTotal = quantKwh * preco;
-      } else {
-        preco = 0.70;
-        valorTotal = quantKwh * preco;
-      }
-
-      print('O valor a pagar pelo consumo de energia é R\$ ${valorTotal.toStringAsFixed(2)}');
+      preco = quantKwh <= 500 ? 0.50 : 0.70;
       break;
 
     case 2:
-      if (quantKwh <= 1000) {
-        preco = 0.65;
-        valorTotal = quantKwh * preco;
-      } else {
-        preco = 0.60;
-        valorTotal = quantKwh * preco;
-      }
-
-      print('O valor a pagar pelo consumo de energia é R\$ ${valorTotal.toStringAsFixed(2)}');
+      preco = quantKwh <= 1000 ? 0.65 : 0.60;
       break;
 
     case 3:
-      if (quantKwh <= 5000) {
-        preco = 0.55;
-        valorTotal = quantKwh * preco;
-      } else {
-        preco = 0.50;
-        valorTotal = quantKwh * preco;
-      }
-
-      print('O valor a pagar pelo consumo de energia é R\$ ${valorTotal.toStringAsFixed(2)}');
+      preco = quantKwh <= 5000 ? 0.55 : 0.50;
       break;
 
     default:
       print("Opção inválida.");
+      return;
   }
+
+  valorTotal = quantKwh * preco;
+
+  print('O valor a pagar pelo consumo de energia é R\$ ${valorTotal.toStringAsFixed(2)}');
 }

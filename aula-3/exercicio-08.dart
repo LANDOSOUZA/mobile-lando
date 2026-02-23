@@ -45,52 +45,68 @@
 
 import 'dart:io';
 
-void main() {
-  int quantLitro;
-  int op;
-  double desconto = 0;
-  double preco = 0;
-  double valorTotal = 0;
+// Função que retorna o preço por litro de acordo com o tipo
+double obterPreco(int tipo) {
+  switch (tipo) {
+    case 1:
+      return 1.70; // Etanol
+    case 2:
+      return 2.00; // Diesel
+    case 3:
+      return 4.50; // Gasolina
+    default:
+      return 0;
+  }
+}
 
+// Função que calcula o desconto
+double calcularDesconto(int tipo, int litros, double preco) {
+  switch (tipo) {
+    case 1: // Etanol
+      return litros >= 15
+          ? preco * litros * 0.04
+          : preco * litros * 0.03;
+
+    case 2: // Diesel
+      return litros >= 15
+          ? preco * litros * 0.05
+          : preco * litros * 0.03;
+
+    case 3: // Gasolina
+      return litros >= 20
+          ? preco * litros * 0.03
+          : 0;
+
+    default:
+      return 0;
+  }
+}
+
+// Função que calcula o valor total
+double calcularValorTotal(double preco, int litros, double desconto) {
+  return (preco * litros) - desconto;
+}
+
+void main() {
   stdout.write('Digite a quantidade de combustível em litros: ');
-  quantLitro = int.parse(stdin.readLineSync()!);
+  int litros = int.parse(stdin.readLineSync()!);
 
   print("\n============== Menu ==============");
   print("1 - Etanol");
   print("2 - Diesel");
   print("3 - Gasolina");
   stdout.write("\nEscolha uma opção: ");
-  op = int.parse(stdin.readLineSync()!);
+  int tipo = int.parse(stdin.readLineSync()!);
 
-  switch (op) {
-    case 1:
-      preco = 1.70;
-      desconto = quantLitro >= 15
-          ? preco * quantLitro * 0.04
-          : preco * quantLitro * 0.03;
-      break;
+  double preco = obterPreco(tipo);
 
-    case 2:
-      preco = 2.00;
-      desconto = quantLitro >= 15
-          ? preco * quantLitro * 0.05
-          : preco * quantLitro * 0.03;
-      break;
-
-    case 3:
-      preco = 4.50;
-      desconto = quantLitro >= 20
-          ? preco * quantLitro * 0.03
-          : 0;
-      break;
-
-    default:
-      print("Opção inválida.");
-      return;
+  if (preco == 0) {
+    print("Opção inválida.");
+    return;
   }
 
-  valorTotal = (preco * quantLitro) - desconto;
+  double desconto = calcularDesconto(tipo, litros, preco);
+  double total = calcularValorTotal(preco, litros, desconto);
 
-  print('O valor a pagar pelo combustível é R\$ ${valorTotal.toStringAsFixed(2)}');
+  print('\nO valor a pagar pelo combustível é R\$ ${total.toStringAsFixed(2)}');
 }
-

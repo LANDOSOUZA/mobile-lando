@@ -25,10 +25,10 @@ class Aluno{
 
 void main(){
   Pessoa cliente = Pessoa();
-  cliente._nome = "Daniel";
+  cliente.setNome("Daniel");
   print("Nome do cliente: ${cliente.getNome()}");
-  Pessoa Daniel = Pessoa();
-  Daniel._nome="Filipe";
-  print("${Daniel.getNome()}");
-  
+
+  Pessoa daniel = Pessoa();
+  daniel.setNome("Filipe");
+  print(daniel.getNome());
 }

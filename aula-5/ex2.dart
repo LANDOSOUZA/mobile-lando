@@ -6,8 +6,6 @@ Exemplo 2 - Polimorfismo
 
 // Cria a classe produtos
 
-import 'dart:collection';
-
 class Produtos{
   String nome;
   int qtde;

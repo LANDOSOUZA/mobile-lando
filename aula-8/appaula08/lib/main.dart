@@ -1,8 +1,8 @@
-import 'package:appaula08/screens/tela1.dart';
-import 'package:appaula08/screens/tela2.dart';
-import 'package:appaula08/screens/tela3.dart';
+import 'package:aula08/screens/tela1.dart';
+import 'package:aula08/screens/tela2.dart';
+import 'package:aula08/screens/tela3.dart';
+import 'package:aula08/screens/tela4.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(NavBottom());
@@ -48,10 +48,11 @@ class _NavScreenState extends State<NavScreen> {
     Home(),
     CheckboxExample(),
     RadioButtonEx(),
+    ChatScreen()
     //Text('Index 0: Home',style: optionStyle,),
-    //Text('Index 1: School', style: optionStyle,),
-    Text('Index 2: Business', style: optionStyle,),
-    Text('Index 3: Chatbot ',style: optionStyle,)
+   // Text('Index 1: School', style: optionStyle,),
+    //Text('Index 2: Business', style: optionStyle,),
+    //Text('Index 3: Chatbot ',style: optionStyle,)
 
   ];
 
@@ -126,9 +127,6 @@ class _NavScreenState extends State<NavScreen> {
           ),
       
       );
-
       
-        
-    
   }
 }
